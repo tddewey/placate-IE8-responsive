@@ -1,0 +1,52 @@
+<html>
+<head>
+	<title>IE 8 Media Queries</title>
+
+<!--[if lte IE 8]>
+	<link rel="stylesheet" href="css/global-old-ie.css">
+<![endif]-->
+
+<!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="css/global.css">
+<!--<![endif]-->
+
+</head>
+<body>
+Hello everyone!
+<pre><code>
+	/**
+	 * Enqueue styles
+	 */
+	themeslug_enqueue_styles() {
+		// For Wordpress
+		global $wp_styles;
+
+		wp_enqueue_style( 'themeslug-global-old-ie', get_stylesheet_directory_uri() . '/css/global-old-ie.css' );
+		wp_enqueue_style( 'themeslug-global', get_stylesheet_directory_uri() . '/css/global.css' );
+
+		$wp_styles->add_data( 'themeslug-global-old-ie', 'conditional', 'lte IE 8');
+		$wp_styles->add_data( 'themeslug-global', 'conditional', 'gt IE 8');
+	}
+	add_action( 'wp_enqueue_scripts', themeslug_enqueue_styles );
+
+
+	/**
+	 * Modifiy the non-conditional tag so that <= IE8 does not load it.
+	 * It's kind of janky, it may be better for readability to output everything
+	 * using the print_styles hook (e.g. take the main css out of the enqueue system).
+	 * @return string
+	 */
+	function themeslug_super_condition( $tag, $handle ) {
+		if ( 'themeslug-global' === $handle ) {
+			return '<!-->' . $tag . '<!--';
+		} else {
+			return $tag;
+		}
+	}
+	add_filter( 'style_loader_tag', themeslug_super_condition, null, 2 );
+
+
+</code></pre>
+
+</body>
+</html>

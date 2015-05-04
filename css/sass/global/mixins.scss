@@ -1,0 +1,34 @@
+/**
+ * Creates a min-width screen only breakpoint
+ *
+ */
+@mixin breakpoint($width) {
+	$fixed-width: false !default !global;
+	
+	// Check if fixed-width is set.
+	@if $fixed-width != false {
+
+		// Only output for media queries smaller than the fixed width
+		@if $width <= $fixed-width {
+			@content;
+		}
+
+	} @else {
+		// For non-fixed width, output the media query
+		@media screen and (min-width: $width) {
+			@content;
+		}
+	}
+
+}
+
+/**
+ * Output content only for old IE.
+ *
+ */
+@mixin only-old-ie {
+	$is-old-ie: false !default !global;
+	@if $is-old-ie {
+		@content;
+	}
+}

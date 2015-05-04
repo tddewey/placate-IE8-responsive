@@ -1,0 +1,22 @@
+body {
+	background-color: red;
+
+	@include breakpoint(480px) {
+		background-color: yellow;
+	}
+
+	@include breakpoint(1024px) {
+		background-color: green;
+	}
+
+	@include breakpoint(1280px) {
+		background-color: blue;
+	}
+
+/*
+	@include only-old-ie() {
+		background-color: purple;
+	}
+*/
+
+}

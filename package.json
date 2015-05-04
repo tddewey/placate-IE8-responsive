@@ -1,0 +1,17 @@
+{
+  "name": "Breakpoint",
+  "title": "Breakpoint",
+  "description": "Demo for a breakpoint mixin",
+  "version": "0.1.0",
+  "author": {
+    "name": "Taylor Dewey",
+    "email": "td@tddewey.com"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-sass": "*",
+    "grunt-autoprefixer": "*"
+  },
+  "keywords": []
+}
